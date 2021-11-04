@@ -1,0 +1,101 @@
+const reservationService = require("../service/reservationServices.js");
+
+module.exports = {
+  async postreservation(req, res) {
+    try {
+      var reservation = await reservationService.addToReservation(req.body);
+      res.send({ msg: "inserted" });
+    } catch {
+      res.send("error inserting");
+    }
+  },
+
+  async updatepayment(req, res) {
+    try {
+      var car = await reservationService.updatePayment(
+        req.params.id,
+        req.body.payment
+      );
+      res.send({ msg: "updated" });
+    } catch {
+      res.send("error updated");
+    }
+  },
+  async updatefeedback(req, res) {
+    try {
+      var car = await reservationService.updatefeedback(
+        req.params.id,
+        req.body.feedback
+      );
+      res.send({ msg: "updated" });
+    } catch {
+      res.send("error updated");
+    }
+  },
+  async updatestatus(req, res) {
+    try {
+      var car = await reservationService.updatestatus(
+        req.params.id,
+        req.body.status
+      );
+      res.send({ msg: "updated" });
+    } catch {
+      res.send("error updated");
+    }
+  },
+  async getreservationByfield(req, res) {
+    try {
+      console.log("here");
+      var reservation = await reservationService
+        .getReservationByfield(req.params.field)
+        .populate("userId packId coachId");
+      res.send(reservation);
+    } catch {
+      res.send("get error ");
+    }
+  },
+
+  async getreservationByuserId(req, res) {
+    try {
+      console.log("here");
+      var reservation = await reservationService
+        .getReservationByuserId(req.params.userId)
+        .populate("userId packId coachId");
+      res.send(reservation);
+    } catch {
+      res.send("get error ");
+    }
+  },
+  async getreservationBycoachId(req, res) {
+    try {
+      console.log("here");
+      var reservation = await reservationService
+        .getReservationBycoachId(req.params.coachId)
+        .populate("userId packId coachId");
+      res.send(reservation);
+    } catch {
+      res.send("get error ");
+    }
+  },
+  async getreservationByuserId(req, res) {
+    try {
+      console.log("here");
+      var reservation = await reservationService
+        .getReservationByuserId(req.params.userId)
+        .populate("userId packId coachId");
+      res.send(reservation);
+    } catch {
+      res.send("get error ");
+    }
+  },
+  async get(req, res) {
+    try {
+      var reservation = await reservationService
+        .getall()
+        .populate("userId packId coachId");
+      res.send(reservation);
+    } catch {
+      res.send("get error ");
+    }
+  },
+};
