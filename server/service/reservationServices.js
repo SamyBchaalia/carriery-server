@@ -1,4 +1,4 @@
-var Reservation = require("../Model/reservation");
+var Reservation = require("../model/reservation");
 
 module.exports = new (class ReservationService {
   //post
