@@ -1,4 +1,4 @@
-var Pack = require("../Model/pack.js");
+var Pack = require("../model/pack.js");
 
 module.exports = new (class PackService {
   create(data) {
