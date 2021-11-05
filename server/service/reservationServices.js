@@ -1,9 +1,16 @@
-var Reservation = require("../model/reservation");
+var Reservation = require("../model/reservation.js");
+var Archieve = require("../model/archieve.js");
 
 module.exports = new (class ReservationService {
   //post
   addToReservation(data) {
     return Reservation.create(data);
+  }
+  archieve(data) {
+    return Archieve.create(data);
+  }
+  delete(id) {
+    return Reservation.findOneAndDelete({ _id: id });
   }
   updatePayment(_id, payment) {
     return Reservation.findOneAndUpdate({ _id: _id }, { payment: payment });
@@ -17,6 +24,9 @@ module.exports = new (class ReservationService {
   getall() {
     return Reservation.find();
   }
+  getallArchieve() {
+    return Archieve.find();
+  }
   getReservationByfield(field) {
     return Reservation.find({ field: field });
   }
@@ -28,6 +38,9 @@ module.exports = new (class ReservationService {
   }
   getReservationBypackId(packId) {
     return Reservation.find({ packId: packId });
+  }
+  getReservationById(_id) {
+    return Reservation.find({ _id: _id });
   }
   update(_id, data) {
     return Reservation.findOneAndUpdate({ _id: _id }, data);
