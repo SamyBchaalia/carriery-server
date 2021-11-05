@@ -9,7 +9,7 @@ const adminRouter = require("./router/adminRouter.js");
 const packRouter = require("./router/packRouter.js");
 const reservationRouter = require("./router/reservationRouter.js");
 
-const PORT = 3636;
+const PORT = 3636 || process.env.PORT;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -19,7 +19,9 @@ app.use("/coach", coachRouter);
 app.use("/admin", adminRouter);
 app.use("/pack", packRouter);
 app.use("/reservation", reservationRouter);
-
+app.get("/" , (req , res)=>{
+  res.send("hello world")
+})
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
