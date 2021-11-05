@@ -1,4 +1,4 @@
-var User = require("../Model/user.js");
+var User = require("../model/user.js");
 
 module.exports = new (class userService {
   signup(data) {
