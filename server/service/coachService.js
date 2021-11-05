@@ -1,4 +1,4 @@
-var Coach = require("../Model/coach.js");
+var Coach = require("../model/coach.js");
 
 module.exports = new (class CoachService {
   signup(data) {
