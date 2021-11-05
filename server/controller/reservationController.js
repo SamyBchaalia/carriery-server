@@ -98,4 +98,24 @@ module.exports = {
       res.send("get error ");
     }
   },
+  async getarchive(req, res) {
+    try {
+      var reservation = await reservationService
+        .getallArchieve()
+        .populate("userId packId coachId");
+      res.send(reservation);
+    } catch {
+      res.send("get error ");
+    }
+  },
+  async archiveReservation(req, res) {
+    try {
+      var data = await reservationService.getReservationById(req.params.id);
+      var arr = await reservationService.archieve(req.params.id);
+      var user = await reservationService.delete(req.params.id);
+      res.send({ msg: "deleted" });
+    } catch {
+      res.send("error deleting_params");
+    }
+  },
 };
