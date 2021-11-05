@@ -1,4 +1,4 @@
-var Admin = require("../Model/admin.js");
+var Admin = require("../model/admin.js");
 
 module.exports = new (class AdminService {
   signup(data) {
