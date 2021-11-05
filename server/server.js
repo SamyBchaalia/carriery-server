@@ -9,7 +9,7 @@ const adminRouter = require("./router/adminRouter.js");
 const packRouter = require("./router/packRouter.js");
 const reservationRouter = require("./router/reservationRouter.js");
 
-const PORT = 3636 || process.env.PORT;
+const PORT =  process.env.PORT || 3636 ;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
