@@ -50,12 +50,17 @@ module.exports = {
       // res.send(req.body);
       if (!req.body.password || !req.body.email) {
         res.send({ msg: false });
+      } 
+      var user = await userService.getUserByEmail(req.body.email);
+      if(user){
+        res.send({ msg : "email already exist"}) 
       }
       bcrypt.hash(req.body.password, 10, async (err, hash) => {
         var user = req.body;
         user.password = hash;
         var a = await userService.signup(user);
-        res.send({ msg: true });
+        var token = jwt.sign({ id: a._id }, "sa7fa leblebi");
+        res.send({ token: token });
       });
     } catch {
       res.send("get error ");
