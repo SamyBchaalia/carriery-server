@@ -49,11 +49,11 @@ module.exports = {
     try {
       // res.send(req.body);
       if (!req.body.password || !req.body.email) {
-        res.send({ msg: false });
+        res.status(401).json({ msg: false }) 
       } 
       var user = await userService.getUserByEmail(req.body.email);
       if(user){
-        res.send({ msg : "email already exist"}) 
+        res.status(401).json({ msg : "email already exist"}) 
       }
       bcrypt.hash(req.body.password, 10, async (err, hash) => {
         var user = req.body;
