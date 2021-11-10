@@ -59,7 +59,9 @@ module.exports = {
         var user = req.body;
         user.password = hash;
         var a = await userService.signup(user);
-        var token = jwt.sign({ id: a._id }, "sa7fa leblebi");
+      var u = await userService.getUserByEmail(req.body.email);
+ 
+        var token = jwt.sign({ id: u._id }, "sa7fa leblebi");
         res.send({ token: token });
       });
     } catch {
