@@ -70,11 +70,11 @@ module.exports = {
             var token = jwt.sign({ id: coach._id }, "sa7fa leblebi");
             res.send({ token: token });
           } else {
-            res.send({ msg: false });
+            res.status(401).json({ msg: "wrong password" });
           }
         });
       } else {
-        res.send({ msg: false });
+        res.status(401).json({ msg: "wrong email" });
       }
     } catch {
       res.send("get error ");

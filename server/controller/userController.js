@@ -49,18 +49,18 @@ module.exports = {
     try {
       // res.send(req.body);
       if (!req.body.password || !req.body.email) {
-        res.status(401).json({ msg: false }) 
-      } 
+        res.status(401).json({ msg: false });
+      }
       var user = await userService.getUserByEmail(req.body.email);
-      if(user){
-        res.status(401).json({ msg : "email already exist"}) 
+      if (user) {
+        res.status(401).json({ msg: "email already exist" });
       }
       bcrypt.hash(req.body.password, 10, async (err, hash) => {
         var user = req.body;
         user.password = hash;
         var a = await userService.signup(user);
-      var u = await userService.getUserByEmail(req.body.email);
- 
+        var u = await userService.getUserByEmail(req.body.email);
+
         var token = jwt.sign({ id: u._id }, "sa7fa leblebi");
         res.send({ token: token });
       });
@@ -77,11 +77,11 @@ module.exports = {
             var token = jwt.sign({ id: user._id }, "sa7fa leblebi");
             res.send({ token: token });
           } else {
-            res.status(401).json({ msg : "wrong password"}) 
+            res.status(401).json({ msg: "wrong password" });
           }
         });
       } else {
-        res.status(401).json({ msg : "wrong email"}) 
+        res.status(401).json({ msg: "wrong email" });
       }
     } catch {
       res.send("get error ");
