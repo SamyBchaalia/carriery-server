@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 
 const PackSchema = new mongoose.Schema(
   {
-    title: Number,
+    title: String,
     service: String,
     price: String,
     type: { type: String, default: "Pack" },
