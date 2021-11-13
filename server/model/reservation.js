@@ -14,7 +14,7 @@ const ReservationSchema = new mongoose.Schema(
     },
     coachId: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "User",
+      ref: "Coach",
     },
     status: String,
     resume: String,
