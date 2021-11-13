@@ -56,11 +56,11 @@ module.exports = {
             var token = jwt.sign({ id: admin._id }, "sa7fa leblebi");
             res.send({ token: token });
           } else {
-            res.send({ msg: false });
+            res.status(401).json({ msg: "wrong password" });
           }
         });
       } else {
-        res.send({ msg: false });
+        res.status(401).json({ msg: "wrong admin name" });
       }
     } catch {
       res.send("get error ");
