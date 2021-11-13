@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 module.exports = {
   async getpack(req, res) {
     try {
-      var pack = await packService.getAllpack();
+      var pack = await packService.getAllPack();
       res.send(pack);
     } catch {
       res.send("get error ");
@@ -34,11 +34,12 @@ module.exports = {
       res.send("error updated");
     }
   },
-  async create(req, res) {
+  async create(req, res, next) {
     try {
-      var pack = await packService.create(req.body);
+      var pack = await packService.createe(req.body);
       res.send({ msg: "inserted" });
-    } catch {
+    } catch (next) {
+      console.log(next);
       res.send("error inserting");
     }
   },
