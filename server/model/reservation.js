@@ -20,7 +20,7 @@ const ReservationSchema = new mongoose.Schema(
     resume: String,
     field: String,
     payment: String,
-    comment: String,
+    feedback: String,
     type: { type: String, default: "Reservation" },
   },
   {
