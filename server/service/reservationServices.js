@@ -18,6 +18,9 @@ module.exports = new (class ReservationService {
   updatefeedback(_id, feedback) {
     return Reservation.findOneAndUpdate({ _id: _id }, { feedback: feedback });
   }
+  updatecoachId(_id, coachId) {
+    return Reservation.findOneAndUpdate({ _id: _id }, { coachId: coachId });
+  }
   updatestatus(_id, status) {
     return Reservation.findOneAndUpdate({ _id: _id }, { status: status });
   }

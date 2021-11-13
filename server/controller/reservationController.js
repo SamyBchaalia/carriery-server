@@ -21,6 +21,18 @@ module.exports = {
       res.send("error updated");
     }
   },
+
+  async updateCoachId(req, res) {
+    try {
+      var car = await reservationService.updatecoachId(
+        req.params.id,
+        req.body.coachId
+      );
+      res.send({ msg: "updated" });
+    } catch {
+      res.send("error updated");
+    }
+  },
   async updatefeedback(req, res) {
     try {
       var car = await reservationService.updatefeedback(
