@@ -13,6 +13,8 @@ router.get(
   "/coach/done/:coachId",
   reservationController.getreservationBycoachIdandDone
 );
+router.get("/nottaken", reservationController.gitverifiedRequests);
+
 router.get("/user/:userId", reservationController.getreservationByuserId);
 router.get("/field/:field", reservationController.getreservationByfield);
 

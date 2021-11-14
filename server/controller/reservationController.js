@@ -123,6 +123,16 @@ module.exports = {
       res.send("get error ");
     }
   },
+  async gitverifiedRequests(req, res) {
+    try {
+      var reservation = await reservationService
+        .getvarified()
+        .populate("userId packId coachId");
+      res.send(reservation);
+    } catch {
+      res.send("get error ");
+    }
+  },
 
   async getreservationByuserId(req, res) {
     try {

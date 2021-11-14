@@ -37,10 +37,13 @@ module.exports = new (class ReservationService {
     return Reservation.find({ userId: userId });
   }
   getReservationBycoachId(coachId) {
-    return Reservation.find({ coachId: coachId, status: 3 });
+    return Reservation.find({ coachId: coachId, status: "3" });
   }
   getReservationBycoachIdandDone(coachId) {
-    return Reservation.find({ coachId: coachId, status: 4 });
+    return Reservation.find({ coachId: coachId, status: "4" });
+  }
+  getvarified() {
+    return Reservation.find({ status: "2" });
   }
   getReservationBypackId(packId) {
     return Reservation.find({ packId: packId });
