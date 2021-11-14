@@ -60,10 +60,9 @@ module.exports = {
         if (error) {
           console.log(error);
         } else {
-          console.log("Email sent: " + info.response);
+          res.send({ msg: "updated" });
         }
       });
-      res.send({ msg: "updated" });
     } catch {
       res.send("error updated");
     }
