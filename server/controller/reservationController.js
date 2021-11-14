@@ -46,14 +46,13 @@ module.exports = {
   },
   async updatefeedback(req, res) {
     try {
-      var data = await reservationService.getReservationById(req.params.id);
       var car = await reservationService.updatefeedback(
         req.params.id,
         req.body.feedback
       );
       let mailOptions = {
         from: "carrierytn@gmail.com",
-        to: data[0].userId._id,
+        to: req.body.email,
         subject: "your feedback is ready",
         text: "go check it now",
       };
