@@ -1,4 +1,6 @@
 const express = require("express");
+const nodemailer = require("nodemailer");
+
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -11,7 +13,7 @@ const adminRouter = require("./router/adminRouter.js");
 const packRouter = require("./router/packRouter.js");
 const reservationRouter = require("./router/reservationRouter.js");
 
-const PORT =  process.env.PORT || 3636 ;
+const PORT = process.env.PORT || 3636;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -21,23 +23,20 @@ app.use("/coach", coachRouter);
 app.use("/admin", adminRouter);
 app.use("/pack", packRouter);
 app.use("/reservation", reservationRouter);
-app.get("/" , (req , res)=>{
-  res.send("hello world")
-})
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 cloudinary.config({
   cloud_name: "whah",
   api_key: "967934588341829",
   api_secret: "5tGQ-PeH3P4psCWHmTkZfzbsEsc",
 });
 
-// ULOAD.ANY(0) TAKES ANY TYPE OF DATA
 app.post("/upload", upload.any(0), (req, res) => {
-  // REQ.FILES[0].PATH GIVE US THE PATH FROM THE LOCAL FOLDER WITH FILE NAME
   let image = req.files[0].path;
   console.log("REQ========> ", req.files[0].path);
 
   try {
-    // UPLOAD IMG TO CLOUDINARY
     cloudinary.uploader.upload(image, (error, result) => {
       error && res.send({ status: false, msg: error });
       res.send({ status: true, msg: result });
@@ -45,7 +44,54 @@ app.post("/upload", upload.any(0), (req, res) => {
   } catch (err) {
     res.send({ status: false, msg: err });
   }
-  // THE RESPONSE WILL HAVE ALL THE DATA ABOUT THE UPLOADED IMG WE ONLY NEED THE URL FOR NOW
+});
+// app.post("/mail", (req, res) => {
+//   // create reusable transporter object using the default SMTP transport
+//   let transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     auth: {
+//       user: "carrierytn@gmail.com", // generated ethereal user
+//       pass: "20028952sami", // generated ethereal password
+//     },
+//   });
+//   var msg = {
+//     from: "carrierytn@gmail.com", // sender address
+//     to: "halimboussada10@gmail.com", // list of receivers
+//     subject: "Hello", // Subject line
+//     text: "Hello world?", // plain text body
+//     html: "<b>Hello world?</b>", // html body
+//   };
+//   transporter.sendMail(msg, (err, data) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.send("mail");
+//     }
+//   });
+// });
+
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "sami.benchaalia@sesame.com.tn",
+    pass: "1920vivaca",
+  },
+});
+
+app.post("/mail", (req, res) => {
+  let mailOptions = {
+    from: "sami.benchaalia@sesame.com.tn",
+    to: "halimboussada10@gmail.com",
+    subject: "test",
+    text: "hello world",
+  };
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
 });
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
