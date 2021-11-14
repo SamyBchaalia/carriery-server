@@ -112,6 +112,18 @@ module.exports = {
       res.send("get error ");
     }
   },
+  async getreservationBycoachIdandDone(req, res) {
+    try {
+      console.log("here");
+      var reservation = await reservationService
+        .getReservationBycoachIdandDone(req.params.coachId)
+        .populate("userId packId coachId");
+      res.send(reservation);
+    } catch {
+      res.send("get error ");
+    }
+  },
+
   async getreservationByuserId(req, res) {
     try {
       console.log("here");

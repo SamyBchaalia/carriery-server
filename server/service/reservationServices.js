@@ -37,7 +37,10 @@ module.exports = new (class ReservationService {
     return Reservation.find({ userId: userId });
   }
   getReservationBycoachId(coachId) {
-    return Reservation.find({ coachId: coachId });
+    return Reservation.find({ coachId: coachId, status: 3 });
+  }
+  getReservationBycoachIdandDone(coachId) {
+    return Reservation.find({ coachId: coachId, status: 4 });
   }
   getReservationBypackId(packId) {
     return Reservation.find({ packId: packId });
