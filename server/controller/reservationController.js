@@ -1,5 +1,16 @@
 const reservationService = require("../service/reservationServices.js");
+const nodemailer = require("nodemailer");
 
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "carrierytn@gmail.com",
+    pass: "20028952sami",
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
 module.exports = {
   async postreservation(req, res) {
     try {
@@ -35,10 +46,24 @@ module.exports = {
   },
   async updatefeedback(req, res) {
     try {
+      var data = await reservationService.getReservationById(req.params.id);
       var car = await reservationService.updatefeedback(
         req.params.id,
         req.body.feedback
       );
+      let mailOptions = {
+        from: "carrierytn@gmail.com",
+        to: data[0].userId._id,
+        subject: "your feedback is ready",
+        text: "go check it now",
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
       res.send({ msg: "updated" });
     } catch {
       res.send("error updated");

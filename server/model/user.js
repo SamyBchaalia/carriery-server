@@ -12,7 +12,11 @@ const UserSchema = new mongoose.Schema(
     address: String,
     postcode: String,
     city: String,
-    photo: String,
+    photo: {
+      type: String,
+      default:
+        "https://iupac.org/wp-content/uploads/2018/05/default-avatar.png",
+    },
     education: String,
     country: String,
     about: String,

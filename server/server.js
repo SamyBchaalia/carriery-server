@@ -76,6 +76,9 @@ var transporter = nodemailer.createTransport({
     user: "carrierytn@gmail.com",
     pass: "20028952sami",
   },
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
 app.post("/mail", (req, res) => {
