@@ -73,14 +73,14 @@ app.post("/upload", upload.any(0), (req, res) => {
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "sami.benchaalia@sesame.com.tn",
-    pass: "1920vivaca",
+    user: "carrierytn@gmail.com",
+    pass: "20028952sami",
   },
 });
 
 app.post("/mail", (req, res) => {
   let mailOptions = {
-    from: "sami.benchaalia@sesame.com.tn",
+    from: "carrierytn@gmail.com",
     to: "halimboussada10@gmail.com",
     subject: "test",
     text: "hello world",
