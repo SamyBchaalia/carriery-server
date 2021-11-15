@@ -19,7 +19,12 @@
     "nodemailer": "^6.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+     "firebase-admin": "^9.8.0",
+     "@affinda/affinda": "^0.3.0"
+
+    
+
   },
   "devDependencies": {}
 }
