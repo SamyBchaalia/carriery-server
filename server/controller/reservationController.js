@@ -189,7 +189,7 @@ module.exports = {
     }
   },
   async paiment(req, res) {
-    var seccessUrl =
+    var s =
       "https://carriery-server.herokuapp.com/reservation/verifypayment/" +
       req.params.id;
     var obj = {
@@ -202,8 +202,8 @@ module.exports = {
       email: "mon.email@mail.com",
       orderId: "1234657",
       link: "https://api.dev.konnect.network/WSlQUtBF8",
-      webhook: successUrl,
-      successUrl: "https://dev.konnect.network/gateway/payment-success",
+      webhook: s,
+      successUrl: s,
       failUrl: "https://dev.konnect.network/gateway/payment-failure",
       acceptedPaymentMethods: ["bank_card", "wallet", "e-DINAR"],
     };
@@ -212,11 +212,15 @@ module.exports = {
         "x-api-key": "619187c6073209498e64172e:xB1mo2ZMSWWuoKT-9P3_USbzfZl7",
       },
     };
-    var a = await axios.post(
-      "https://api.preprod.konnect.network/api/v2/payments/init-payment",
-      obj,
-      config
-    );
-    res.send(a);
+    axios
+      .post(
+        "https://api.preprod.konnect.network/api/v2/payments/init-payment",
+        obj,
+        config
+      )
+      .then((a) => {
+        console.log("hahah", a.data);
+        res.send(a.data);
+      });
   },
 };
