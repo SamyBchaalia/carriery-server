@@ -14,7 +14,8 @@ router.get(
   reservationController.getreservationBycoachIdandDone
 );
 router.get("/nottaken", reservationController.gitverifiedRequests);
-
+router.post("/konnect/:id", reservationController.paiment);
+router.get("/verifypayment/:id", reservationController.verifyPayment);
 router.get("/user/:userId", reservationController.getreservationByuserId);
 router.get("/field/:field", reservationController.getreservationByfield);
 

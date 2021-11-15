@@ -45,57 +45,6 @@ app.post("/upload", upload.any(0), (req, res) => {
     res.send({ status: false, msg: err });
   }
 });
-// app.post("/mail", (req, res) => {
-//   // create reusable transporter object using the default SMTP transport
-//   let transporter = nodemailer.createTransport({
-//     service: "gmail",
-//     auth: {
-//       user: "carrierytn@gmail.com", // generated ethereal user
-//       pass: "20028952sami", // generated ethereal password
-//     },
-//   });
-//   var msg = {
-//     from: "carrierytn@gmail.com", // sender address
-//     to: "halimboussada10@gmail.com", // list of receivers
-//     subject: "Hello", // Subject line
-//     text: "Hello world?", // plain text body
-//     html: "<b>Hello world?</b>", // html body
-//   };
-//   transporter.sendMail(msg, (err, data) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       res.send("mail");
-//     }
-//   });
-// });
-
-var transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "carrierytn@gmail.com",
-    pass: "20028952sami",
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
-
-app.post("/mail", (req, res) => {
-  let mailOptions = {
-    from: "carrierytn@gmail.com",
-    to: "halimboussada10@gmail.com",
-    subject: "test",
-    text: "hello world",
-  };
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
-});
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
